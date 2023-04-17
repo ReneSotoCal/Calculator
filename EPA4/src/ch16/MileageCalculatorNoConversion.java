@@ -28,6 +28,7 @@ private String defaultCapacity = "Gallons";
 private String defaultResult = "MPG";
 private String altResult = "L/100KM";
 
+
 // create UI components split by type
 private Button btnCalc = new Button("Calculate");
 private Button btnReset = new Button("Reset");
