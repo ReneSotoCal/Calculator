@@ -26,6 +26,8 @@ private String defaultEntry = String.format("%.2f", 0.00);
 private String defaultMileage = "Miles";
 private String defaultCapacity = "Gallons";
 private String defaultResult = "MPG";
+private String altResult = "L/100KM";
+
 
 // create UI components split by type
 private Button btnCalc = new Button("Calculate");
@@ -68,6 +70,8 @@ public void start(Stage primaryStage) {
 	mainPane.add(btnReset, 0, 5);
 	mainPane.add(btnCalc, 1, 5);
 
+	 cbConv.getItems().addAll(defaultResult, altResult);
+	 cbConv.setValue(defaultResult);
 
 	// create a scene and place it in the stage
 	Scene scene = new Scene(mainPane);
