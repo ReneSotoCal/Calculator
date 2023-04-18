@@ -1,10 +1,10 @@
 /**
  * File: csci1302/ch16/MileageCalculator.java
  * Package: ch16
- * @author Christopher Williams
- * Created on: Apr 12, 2017
- * Last Modified: Apr 15, 2019
- * Description:  
+ * @author Rene Soto and Robert Nelson
+ * Created on: Apr 13, 2023
+ * Last Modified: Apr 18, 2023
+ * Description:  Fuel Efficiency Calculator
  */
 package ch16;
 
