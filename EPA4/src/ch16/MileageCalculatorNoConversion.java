@@ -27,6 +27,8 @@ private String defaultMileage = "Miles";
 private String defaultCapacity = "Gallons";
 private String defaultResult = "MPG";
 private String altResult = "L/100KM";
+private String altMileage = "Kilometers";
+private String altCapacity = "Liters";
 
 
 // create UI components split by type
@@ -70,9 +72,20 @@ public void start(Stage primaryStage) {
 	mainPane.add(btnReset, 0, 5);
 	mainPane.add(btnCalc, 1, 5);
 
-	 cbConv.getItems().addAll(defaultResult, altResult);
-	 cbConv.setValue(defaultResult);
-
+	cbConv.getItems().addAll(defaultResult, altResult);
+	cbConv.setValue(defaultResult);
+	
+	btnCalc.setOnAction(e -> calcMileage());
+	tfDistance.setOnAction(e -> calcMileage());
+	tfCapacity.setOnAction(e -> calcMileage());
+	tfResult.setOnAction(e -> calcMileage());
+	cbConv.setOnAction(e -> changeLabels());
+	btnReset.setOnAction(e -> {
+		tfDistance.setText("0.00");
+		tfCapacity.setText("0.00");
+		tfResult.setText("0.00");
+	});
+	
 	// create a scene and place it in the stage
 	Scene scene = new Scene(mainPane);
 
@@ -85,7 +98,43 @@ public void start(Stage primaryStage) {
 	tfDistance.requestFocus();
 }
 
+private void changeLabels() {
+// check which efficiency type is selected
+if (cbConv.getValue().matches("L/100KM")) {
+// update labels for L/100KM
+lblDistance.setText(altMileage);
+lblCapacity.setText(altCapacity);
+lblResult.setText(altResult);
+} else {
+// update labels for MPG
+lblDistance.setText(defaultMileage);
+lblCapacity.setText(defaultCapacity);
+lblResult.setText(defaultResult);
+}
+}
 
+private void calcMileage() {
+double distance = 0.0, capacity = 0.0;
+
+// make sure to get numeric values only
+if (tfCapacity.getText() != null && !tfCapacity.getText().isEmpty() && tfDistance.getText() != null
+&& !tfDistance.getText().isEmpty()) {
+distance = Double.parseDouble(tfDistance.getText());
+capacity = Double.parseDouble(tfCapacity.getText());
+}
+
+//check for type of calculation
+double result = 0.0;
+if (cbConv.getValue().matches("L/100KM")) {
+// liters / 100KM
+result = (distance != 0) ? capacity / (distance / 100.0) : 0;
+tfResult.setText(String.format("%.2f", result));
+} else {
+// MPG
+result = (capacity != 0) ? distance / capacity : 0;
+tfResult.setText(String.format("%.2f", result));
+}
+}
 public static void main(String[] args) {
 	launch(args);
 }
