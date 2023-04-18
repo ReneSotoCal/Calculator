@@ -1,10 +1,10 @@
 /**
  * File: csci1302/ch16/MileageCalculator.java
  * Package: ch16
- * @author Christopher Williams
- * Created on: Apr 12, 2017
- * Last Modified: Apr 15, 2019
- * Description:  
+ * @author Rene Soto and Robert Nelson
+ * Created on: Apr 13, 2023
+ * Last Modified: Apr 18, 2023
+ * Description:  Fuel Efficiency Calculator
  */
 package ch16;
 
@@ -81,9 +81,13 @@ public void start(Stage primaryStage) {
 	tfResult.setOnAction(e -> calcMileage());
 	cbConv.setOnAction(e -> changeLabels());
 	btnReset.setOnAction(e -> {
+		lblDistance.setText(defaultMileage);
+		lblCapacity.setText(defaultCapacity);
+		lblResult.setText(defaultResult);
 		tfDistance.setText("0.00");
 		tfCapacity.setText("0.00");
 		tfResult.setText("0.00");
+		cbConv.setValue(defaultResult);
 	});
 	
 	// create a scene and place it in the stage
@@ -105,11 +109,17 @@ if (cbConv.getValue().matches("L/100KM")) {
 lblDistance.setText(altMileage);
 lblCapacity.setText(altCapacity);
 lblResult.setText(altResult);
+tfDistance.setText("0.00");
+tfCapacity.setText("0.00");
+tfResult.setText("0.00");
 } else {
 // update labels for MPG
 lblDistance.setText(defaultMileage);
 lblCapacity.setText(defaultCapacity);
 lblResult.setText(defaultResult);
+tfDistance.setText("0.00");
+tfCapacity.setText("0.00");
+tfResult.setText("0.00");
 }
 }
 
